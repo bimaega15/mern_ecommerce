@@ -1,18 +1,15 @@
-import mongoose from 'mongoose'
+import mysql from "mysql";
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useCreateIndex: true,
-    })
+const connect = () => {
+  const config = {
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "api_pajak",
+    dateStrings: true,
+  };
+  // let con = mysql.createConnection(config);
+  return config;
+};
 
-    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline)
-  } catch (error) {
-    console.error(`Error: ${error.message}`.red.underline.bold)
-    process.exit(1)
-  }
-}
-
-export default connectDB
+export default connect;
